@@ -18,6 +18,7 @@ Plugin 'git://github.com/kristijanhusak/vim-hybrid-material.git'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 
 " All of your Plugins must be added before the following line
@@ -39,6 +40,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 set nowrap
 
+let g:nerdtree_tabs_open_on_console_startup=1
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
