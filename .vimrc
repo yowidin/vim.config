@@ -19,6 +19,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'derekwyatt/vim-fswitch'
 
 
 " All of your Plugins must be added before the following line
@@ -29,7 +30,7 @@ colorscheme hybrid_material
 let g:airline_theme = "hybrid"
 set laststatus=2
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
 
 " NERDTree settings
 " Hotkey
@@ -45,3 +46,31 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 
+nnoremap <silent> <F5> :YcmCompleter GoTo<CR>
+
+" CTRL+S+TAB - previous tab
+nmap <silent> <C-S-Tab> :tabprevious<CR>
+
+" CTRL+TAB - next tab
+nmap <silent> <C-Tab> :tabnext<CR>
+
+" F4 - Switch between header and source files
+nnoremap <silent> <F4> :FSHere<CR>
+
+" F6 - Search for a word under cursor into all files within the directory 
+map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
+
+function! InputGrep()
+  call inputsave()
+  let text = input('Enter text: ')
+  call inputrestore()
+  execute "vimgrep /" . text . "/j %:p:h/**"
+  execute "cw"
+endfunction
+
+" F7 - Ask user for a input strin and search for it into all files within
+" current file's directory
+nnoremap <silent> <F7> :call InputGrep()<CR>
+
+" F9 - make in the current directory
+nnoremap <F9> :make<CR>
