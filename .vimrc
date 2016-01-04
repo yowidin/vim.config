@@ -67,15 +67,31 @@ function! MySwitchBuf(filename)
    endtry
 endfunction
 
+" Tries to open an existing companion file
+" in either new or existing screen buffer.
 function! SwitchInBuffer()
+   try   
+      " This function may throw (e.g. invalid file type) 
       let l:path = FSReturnReadableCompanionFilename('%')
-      try 
+      if empty(l:path)
+         " Or companion file may not exist
+         echom 'Could not find companion file!'
+         return
+      endif
+
+      try
+         " Try to activate existing buffer
          call MySwitchBuf(l:path)
       catch
+         " Or open new one if it's not open
          execute 'vsplit | wincmd l | e ' . l:path
       endtry
+   catch
+      echom 'Error getting companion file!'
+   endtry
 endfunction
 
+" F4 - Open companion file
 nnoremap <silent> <F4> :call SwitchInBuffer()<CR>
 
 
@@ -83,16 +99,24 @@ nnoremap <silent> <F4> :call SwitchInBuffer()<CR>
 map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
 
 function! InputGrep()
-  call inputsave()
-  let text = input('Enter text: ')
-  call inputrestore()
-  execute "vimgrep /" . text . "/j %:p:h/**"
-  execute "cw"
+   try 
+      call inputsave()
+      let text = input('Enter text: ')
+      call inputrestore()
+      if !empty(text)
+         execute "vimgrep /" . text . "/j %:p:h/**"
+         execute "cw"
+      else
+         echom "Search string is empty!"
+      endif
+   catch
+      echom "Nothing found!"
+   endtry
 endfunction
 
-" F7 - Ask user for a input strin and search for it into all files within
+" Ctrl+Shift+F - Ask user for a input string and search for it into all files within
 " current file's directory
-nnoremap <silent> <F7> :call InputGrep()<CR>
+nnoremap <silent> <C-S-F> :call InputGrep()<CR>
 
-" F9 - make in the current directory
-nnoremap <F9> :make<CR>
+" Ctrl+Shift+B - make in the current directory
+nnoremap <C-S-B> :make<CR>
