@@ -55,26 +55,25 @@ nmap <silent> <C-S-Tab> :tabprevious<CR>
 nmap <silent> <C-Tab> :tabnext<CR>
 
 function! MySwitchBuf(filename)
-  " remember current value of switchbuf
-  let l:old_switchbuf = &switchbuf
-  try
-    " change switchbuf so other windows and tabs are used
-    set switchbuf=useopen,usetab
-    execute 'vertical sbuf' a:filename
-  finally
-    " restore old value of switchbuf
-    let &switchbuf = l:old_switchbuf
-  endtry
+   " remember current value of switchbuf
+   let l:old_switchbuf = &switchbuf
+   try
+      " change switchbuf so other windows and tabs are used
+      set switchbuf=useopen,usetab
+      execute 'vertical sbuf' a:filename
+   finally
+      " restore old value of switchbuf
+      let &switchbuf = l:old_switchbuf
+   endtry
 endfunction
 
 function! SwitchInBuffer()
-   try
       let l:path = FSReturnReadableCompanionFilename('%')
-      call MySwitchBuf(l:path)
-   catch
-      echom "Cannot detect companion file name!"
-   finally
-   endtry
+      try 
+         call MySwitchBuf(l:path)
+      catch
+         execute 'vsplit | wincmd l | e ' . l:path
+      endtry
 endfunction
 
 nnoremap <silent> <F4> :call SwitchInBuffer()<CR>
