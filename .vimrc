@@ -54,8 +54,31 @@ nmap <silent> <C-S-Tab> :tabprevious<CR>
 " CTRL+TAB - next tab
 nmap <silent> <C-Tab> :tabnext<CR>
 
-" F4 - Switch between header and source files
-nnoremap <silent> <F4> :FSHere<CR>
+function! MySwitchBuf(filename)
+  " remember current value of switchbuf
+  let l:old_switchbuf = &switchbuf
+  try
+    " change switchbuf so other windows and tabs are used
+    set switchbuf=useopen,usetab
+    execute 'vertical sbuf' a:filename
+  finally
+    " restore old value of switchbuf
+    let &switchbuf = l:old_switchbuf
+  endtry
+endfunction
+
+function! SwitchInBuffer()
+   try
+      let l:path = FSReturnReadableCompanionFilename('%')
+      call MySwitchBuf(l:path)
+   catch
+      echom "Cannot detect companion file name!"
+   finally
+   endtry
+endfunction
+
+nnoremap <silent> <F4> :call SwitchInBuffer()<CR>
+
 
 " F6 - Search for a word under cursor into all files within the directory 
 map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
