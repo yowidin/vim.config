@@ -194,6 +194,6 @@ set number
 
 nmap <F8> :TagbarToggle<CR>
 
-map <C-i> :pyf ~/.vim/clang-format.py<cr>
-imap <C-i> <c-o>:pyf ~/.vim/clang-format.py<cr>
+map <F12> :pyf ~/.vim/clang-format.py<cr>
+imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
 
