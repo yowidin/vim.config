@@ -22,7 +22,9 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
+Plugin 'majutsushi/tagbar'
+Plugin 'DoxygenToolkit.vim'
+Plugin 'svnj.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,17 +44,25 @@ nmap <silent> <C-S-Tab> :tabprevious<CR>
 " CTRL+TAB - next tab
 nmap <silent> <C-Tab> :tabnext<CR>
 
+nmap <silent> <S-F1> :Dox<CR>
+
 " Autoclose then NERDTree is a last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 set nowrap
 
+let g:DoxygenToolkit_compactOneLineDoc="yes"
+let g:DoxygenToolkit_briefTag_pre=""
+
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "yobasnippets", "ompsnippets"]
+let g:UltiSnipsListSnippets="<c-F11>"
+
+let g:ycm_complete_in_comments=1
 
 let g:nerdtree_tabs_open_on_console_startup=1
+
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
@@ -153,13 +163,15 @@ nnoremap <silent> <C-F> :call InputGrep()<CR>
 " Ctrl+B - make in the current directory
 nnoremap <silent> <C-B> :redir @a<CR>:make<CR>:redir END<CR>:below new<CR>"ap:setlocal buftype=nofile<CR>
 
+set backspace=indent,eol,start
+
 noremap <Up>     <NOP>
 noremap <Down>   <NOP>
 noremap <Left>   <NOP>
 noremap <Right>  <NOP>
 
 nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+imap <c-s> <Esc>:w<CR>
 nmap <D-s> :w<CR>
 imap <D-s> <Esc>:w<CR>a
 
@@ -179,4 +191,9 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 set number
+
+nmap <F8> :TagbarToggle<CR>
+
+map <C-i> :pyf ~/.vim/clang-format.py<cr>
+imap <C-i> <c-o>:pyf ~/.vim/clang-format.py<cr>
 
