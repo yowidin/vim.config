@@ -24,7 +24,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'DoxygenToolkit.vim'
-Plugin 'svnj.vim'
 Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
