@@ -25,6 +25,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'scrooloose/nerdcommenter'
+"Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,9 +68,9 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 
-nnoremap <silent> <F5> :YcmCompleter GoTo<CR>
-nnoremap <silent> <C-F5> :YcmCompleter GoToDeclaration<CR>
-nnoremap <silent> <S-F5> :YcmCompleter GoToDefinition<CR>
+nnoremap <silent> <F2> :YcmCompleter GoTo<CR>
+nnoremap <silent> <C-F2> :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> <S-F2> :YcmCompleter GoToDefinition<CR>
 
 augroup mycppfiles
    au!
@@ -138,7 +139,7 @@ nnoremap <silent> <C-F4> :call SwitchInBuffer(1)<CR>
 
 
 " F6 - Search for a word under cursor into all files within the directory 
-map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
+"map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
 
 function! InputGrep()
    try 
@@ -197,4 +198,19 @@ nmap <F8> :TagbarToggle<CR>
 
 map <F12> :pyf ~/.vim/clang-format.py<cr>
 imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
+
+"let g:ConqueTerm_CloseOnEnd = 1
+"let g:ConqueTerm_StartMessages = 1
+"let g:ConqueTerm_CWInsert = 1
+"let g:ConqueTerm_ToggleKey = ''
+"let g:ConqueTerm_ExecFileKey = ''
+"let g:ConqueTerm_SendFileKey = ''
+"let g:ConqueTerm_SendVisKey = ''
+
+"let g:ConqueGdb_ToggleBreak = '<F9>'
+"let g:ConqueGdb_Run = '<F5>'
+"let g:ConqueGdb_Next = '<F10>'
+"let g:ConqueGdb_Step = '<F11>'
+"let g:ConqueGdb_Print = '<F6>'
+"let g:ConqueGdb_Finish = '<S-F5>'
 
