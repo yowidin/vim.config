@@ -14,7 +14,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'git://github.com/kristijanhusak/vim-hybrid-material.git'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
@@ -25,14 +24,16 @@ Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'altercation/vim-colors-solarized'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-colorscheme hybrid_material
-let g:airline_theme = "hybrid"
+set background=dark
+colorscheme solarized
+
 set laststatus=2
 
 set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
@@ -139,7 +140,7 @@ nnoremap <silent> <C-F4> :call SwitchInBuffer(1)<CR>
 
 
 " F6 - Search for a word under cursor into all files within the directory 
-"map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j %:p:h/**" <Bar> cw<CR>
+map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j " . getcwd() . "/**" <Bar> cw<CR>
 
 function! InputGrep()
    try 
@@ -176,10 +177,10 @@ imap <c-s> <Esc>:w<CR>
 nmap <D-s> :w<CR>
 imap <D-s> <Esc>:w<CR>a
 
-nmap <c-z> :undo<CR>
-imap <c-z> <Esc>:undo<CR>
-nmap <D-z> :undo<CR>
-imap <D-z> <Esc>:undo<CR>
+"nmap <c-z> :undo<CR>
+"imap <c-z> <Esc>:undo<CR>
+"nmap <D-z> :undo<CR>
+"imap <D-z> <Esc>:undo<CR>
 
 map <silent> <Left> :wincmd h<CR>
 map <silent> <Right> :wincmd l<CR>
