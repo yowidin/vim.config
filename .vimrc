@@ -3,6 +3,7 @@
 " Vundle settings
 set nocompatible              " be iMproved, required
 filetype off                  " required
+set t_Co=256
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -62,6 +63,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-F11>"
 
 let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_comments_and_strings=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
 
 let g:nerdtree_tabs_open_on_console_startup=1
 
@@ -199,6 +203,10 @@ nmap <F8> :TagbarToggle<CR>
 
 map <F12> :pyf ~/.vim/clang-format.py<cr>
 imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
+
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
 
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 1
