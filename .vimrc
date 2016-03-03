@@ -1,9 +1,10 @@
-:syntax enable
+syntax enable
 
 " Vundle settings
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set t_Co=256
+set mouse=a
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -26,6 +27,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'yowidin/vim-german-spell'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line

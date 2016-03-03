@@ -3,14 +3,26 @@ snippet header "Standard file header" b
  * @file   `!p snip.rv = fn`  
  * @author Dennis Sitelew
  * @date   `!v strftime("%b %d, %Y")`
- * @brief  ${1:Brief file description}
  *
- * ${2:Detailed file description}
+ * ${1:Detailed file description}
  */
+
+#ifndef ${2:`!v substitute(toupper(expand("%")), "[\\,/,\\-,.]", "_", "g")`}
+#define $2
+
+namespace ${3} {
+
+} // namespace $3
+
+#endif // $2
 endsnippet
 
 snippet separator "Separator within files" b
 ////////////////////////////////////////////////////////////////////////////////
 /// Class: ${1:Name}
 ////////////////////////////////////////////////////////////////////////////////
+endsnippet
+
+snippet test "TEST" b
+`!v expand("%")`
 endsnippet
