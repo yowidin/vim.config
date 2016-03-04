@@ -69,8 +69,6 @@ let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 
-let g:nerdtree_tabs_open_on_console_startup=1
-
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
@@ -208,7 +206,6 @@ imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
 
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
 
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 1
