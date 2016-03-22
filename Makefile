@@ -9,3 +9,4 @@ all:
 	cd ~/.vim/bundle/YouCompleteMe; ./install.py --clang-completer; cd -
 	ln -s $(ROOT_DIR)/clang-format.py ~/.vim/clang-format.py
 	ln -s $(ROOT_DIR)/UltiSnips ~/.vim/UltiSnips
+	ln -s $(ROOT_DIR)/.Xresources ~/.Xresources

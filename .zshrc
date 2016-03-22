@@ -59,3 +59,6 @@ export SAVEHIST=$HISTSIZE
 autoload -Uz promptinit
 promptinit
 prompt bart
+
+eval `dircolors $HOME/vim.config/dircolors.256dark`
+alias ls='ls --color=auto'
