@@ -1,7 +1,8 @@
 xterm*termName: xterm-256color
 XTerm*metaSendsEscape: true
 Xterm*saveLines: 4096
-xterm*font: 9x15
+xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceSize: 12
 
 ! Solarized color scheme for the X Window System
 !

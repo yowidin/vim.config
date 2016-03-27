@@ -4,7 +4,7 @@ syntax enable
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set t_Co=256
-set mouse=a
+set mouse+=a
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -244,4 +244,10 @@ if &term =~ "xterm\\|rxvt\\|screen-256color\\|xterm-256color"
   " Recent versions of xterm (282 or above) also support
   " 5 -> blinking vertical bar
   " 6 -> solid vertical bar 
+endif
+
+" Splits resize
+if &term =~ '^screen'
+   " Tmux knows the extended mouse mode
+   set ttymouse=xterm2
 endif
