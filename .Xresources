@@ -1,3 +1,7 @@
+*VT100*colorMode: on
+*VT100*dynamicColors: on
+XTerm*scrollBar: false
+
 xterm*termName: xterm-256color
 XTerm*metaSendsEscape: true
 Xterm*saveLines: 4096

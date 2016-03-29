@@ -28,6 +28,7 @@ Plugin 'DoxygenToolkit.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'yowidin/vim-german-spell'
+Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
