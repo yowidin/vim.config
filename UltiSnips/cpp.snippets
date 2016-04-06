@@ -1,28 +1,37 @@
+################################################################################
+# Header file template
+################################################################################
 snippet header "Standard file header" b
 /**
  * @file   `!p snip.rv = fn`  
  * @author Dennis Sitelew
  * @date   `!v strftime("%b %d, %Y")`
- *
- * ${1:Detailed file description}
  */
 
-#ifndef ${2:`!v substitute(toupper(expand("%")), "[\\,/,\\-,.]", "_", "g")`}
-#define $2
+#ifndef ${1:`!v substitute(toupper(expand("%")), "[\\,/,\\-,.]", "_", "g")`}
+#define $1
 
-namespace ${3} {
+namespace ${2} {
 
 } // namespace $3
 
-#endif // $2
+#endif // $1
 endsnippet
 
+################################################################################
+# Separator
+################################################################################
 snippet separator "Separator within files" b
 ////////////////////////////////////////////////////////////////////////////////
 /// Class: ${1:Name}
 ////////////////////////////////////////////////////////////////////////////////
 endsnippet
 
-snippet test "TEST" b
-`!v expand("%")`
+################################################################################
+# Namespace
+################################################################################
+snippet namespace "Namespace definition" b
+namespace ${1} {
+
+} // namespace $1
 endsnippet
