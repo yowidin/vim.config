@@ -65,3 +65,5 @@ if [[ `uname` != 'Darwin' ]] ; then
    eval `dircolors $HOME/vim.config/dircolors.256dark`
    alias ls='ls --color=auto'
 fi
+
+export TERM=xterm-256color
