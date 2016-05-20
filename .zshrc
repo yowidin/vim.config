@@ -10,6 +10,9 @@ compinit
 
 bindkey '^R' history-incremental-search-backward
 
+# Map numpad return to the normal return
+bindkey -s "OM" ""
+
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -A key
