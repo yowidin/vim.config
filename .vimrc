@@ -57,6 +57,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 set nowrap
 
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+"
+" " Use the same symbols as TextMate for tabstops and EOLs
+set listchars=trail:·,tab:▸\ ,eol:¬
+
 let g:DoxygenToolkit_compactOneLineDoc="yes"
 let g:DoxygenToolkit_briefTag_pre=""
 
