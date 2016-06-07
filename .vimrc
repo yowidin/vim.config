@@ -81,6 +81,7 @@ let g:nerdtree_tabs_open_on_console_startup=1
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['\.pyc$', '\.swp']
 
 nnoremap <silent> <F2> :YcmCompleter GoTo<CR>
 nnoremap <silent> <C-F2> :YcmCompleter GoToDeclaration<CR>
