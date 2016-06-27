@@ -11,10 +11,6 @@ snippet header "Standard file header" b
 #ifndef ${1:`!v substitute(toupper(expand("%")), "[\\,/,\\-,.]", "_", "g")`}
 #define $1
 
-namespace ${2} {
-
-} // namespace $2
-
 #endif // $1
 endsnippet
 
