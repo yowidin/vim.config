@@ -218,6 +218,8 @@ imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
+set cino=g0N-s
+
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 1
 "let g:ConqueTerm_CWInsert = 1
