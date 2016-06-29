@@ -15,7 +15,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
@@ -30,6 +29,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'yowidin/vim-german-spell'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'godlygeek/tabular'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
@@ -109,7 +109,7 @@ endfunction
 function! CreateCompanionFile()
    try
       let l:path = FSReturnCompanionFilenameString('%')
-      " Create new one 
+      " Create new one
       execute 'vsplit | wincmd l | e ' . l:path
    catch
       echom "Cannot create a companion file!"
@@ -119,8 +119,8 @@ endfunction
 " Tries to open an existing companion file
 " in either new or existing screen buffer.
 function! SwitchInBuffer(create)
-   try   
-      " This function may throw (e.g. invalid file type) 
+   try
+      " This function may throw (e.g. invalid file type)
       let l:path = FSReturnReadableCompanionFilename('%')
       if empty(l:path)
          " Or companion file may not exist
@@ -148,17 +148,19 @@ function! SwitchInBuffer(create)
    endtry
 endfunction
 
+nmap <silent> <leader>p :set paste!<CR>
+nmap <silent> <leader>h :set hlsearch!<CR>
+
 " F4 - Open companion file
 nnoremap <silent> <F4> :call SwitchInBuffer(0)<CR>
-" Ctrl+F4 - Open companion file
+" Ctrl+F4 - Open or create a companion file
 nnoremap <silent> <C-F4> :call SwitchInBuffer(1)<CR>
 
-
-" F6 - Search for a word under cursor into all files within the directory 
+" F6 - Search for a word under cursor into all files within the directory
 map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j " . getcwd() . "/**" <Bar> cw<CR>
 
 function! InputGrep()
-   try 
+   try
       call inputsave()
       let text = input('Enter text: ')
       call inputrestore()
@@ -176,9 +178,6 @@ endfunction
 " Ctrl+F - Ask user for a input string and search for it into all files within
 " current file's directory
 nnoremap <silent> <C-F> :call InputGrep()<CR>
-
-" Ctrl+B - make in the current directory
-nnoremap <silent> <C-B> :redir @a<CR>:make<CR>:redir END<CR>:below new<CR>"ap:setlocal buftype=nofile<CR>
 
 set backspace=indent,eol,start
 
@@ -218,7 +217,11 @@ imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
-set cino=g0N-s
+set cino=g0,N-s,l1,t0,c1,C1,(0
+
+"sO:* -,mO:*  ,exO:*/,s1:/*,mb:*,ex:*/
+autocmd FileType cpp setlocal comments=s1:/**,mb:*,ex:*/,://!,://,s1:/*,mb:*,ex:*/
+
 
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 1
@@ -244,7 +247,7 @@ if &term =~ "xterm\\|rxvt\\|screen-256color\\|xterm-256color"
   " reset cursor when vim exits
   autocmd VimLeave * silent !echo -ne "\033]112\007"
   " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
-  
+
   " Shapes
   " solid underscore
   let &t_SI .= "\<Esc>[6 q"
@@ -254,7 +257,7 @@ if &term =~ "xterm\\|rxvt\\|screen-256color\\|xterm-256color"
   " 3 -> blinking underscore
   " Recent versions of xterm (282 or above) also support
   " 5 -> blinking vertical bar
-  " 6 -> solid vertical bar 
+  " 6 -> solid vertical bar
 endif
 
 " Splits resize
@@ -262,3 +265,11 @@ if &term =~ '^screen'
    " Tmux knows the extended mouse mode
    set ttymouse=xterm2
 endif
+
+" Requires installed powerline fonts.
+" See: http://vi.stackexchange.com/questions/5622/how-to-configure-vim-airline-plugin-to-look-like-its-own-project-screenshot
+" Font should also be set within the terminal or X file
+let g:airline_powerline_fonts=1
+
+" Tagbar settings
+let g:tagbar_autoclose=1
