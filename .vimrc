@@ -37,7 +37,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 set background=dark
-colorscheme solarized
+:silent! colorscheme solarized
 
 set laststatus=2
 
