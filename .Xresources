@@ -5,7 +5,7 @@ XTerm*scrollBar: false
 xterm*termName: xterm-256color
 XTerm*metaSendsEscape: true
 Xterm*saveLines: 4096
-xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceName: DejaVu Sans Mono for Powerline
 xterm*faceSize: 11
 
 ! Solarized color scheme for the X Window System
