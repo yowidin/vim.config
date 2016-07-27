@@ -77,12 +77,16 @@ let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.swp']
+
+" Do not open NERDTree if filename is passed as argument to VIM
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 nnoremap <silent> <F2> :YcmCompleter GoTo<CR>
 nnoremap <silent> <C-F2> :YcmCompleter GoToDeclaration<CR>
