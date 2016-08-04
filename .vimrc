@@ -43,7 +43,7 @@ set laststatus=2
 
 set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
 
-map <F3> :NERDTreeToggle<CR>
+map <F3> :NERDTreeTabsToggle<CR>
 
 " CTRL+S+TAB - previous tab
 nmap <silent> <C-S-Tab> :tabprevious<CR>
@@ -220,6 +220,18 @@ imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
 
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" Map buffer navigators
+if has('nvim')
+   tnoremap <C-h> <C-\><C-n><C-w>h
+   tnoremap <C-j> <C-\><C-n><C-w>j
+   tnoremap <C-k> <C-\><C-n><C-w>k
+   tnoremap <C-l> <C-\><C-n><C-w>l
+endif
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 set cino=g0,N-s,l1,t0,c1,C1,(0
 
