@@ -11,7 +11,8 @@ compinit
 bindkey '^R' history-incremental-search-backward
 
 # Map numpad return to the normal return
-bindkey -s "OM" ""
+bindkey -s "OM" "
+"
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -67,6 +68,7 @@ prompt bart
 if [[ `uname` != 'Darwin' ]] ; then   
    eval `dircolors $HOME/vim.config/dircolors.256dark`
    alias ls='ls --color=auto'
+   alias ll='ls -lah --color=auto'
 fi
 
 export TERM=xterm-256color

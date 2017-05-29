@@ -60,6 +60,7 @@ def main():
     # Create the rest of symlinks
     symlink('UltiSnips', '.vim')
     symlink('clang-format.py', '.vim')
+    symlink('clang-format3.py', '.vim')
 
     # Prepare Vundle
     vundle_path = os.path.join(HOME_PATH, '.vim', 'bundle', 'Vundle.vim')
