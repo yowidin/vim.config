@@ -277,3 +277,13 @@ let g:tagbar_autoclose=1
 
 " Remap russian characters to english
 set langmap=ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>,ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.
+
+set switchbuf="usetab"
+
+" Store swap files in a separate directory
+set swapfile
+set dir=$HOME/tmp/vimswap//,.
+
+" Highlight extra white spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
