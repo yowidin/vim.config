@@ -41,31 +41,22 @@ set background=dark
 
 set laststatus=2
 
-set tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
+" White spacing
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab nowrap
 
-map <F3> :NERDTreeTabsToggle<CR>
-
-" CTRL+S+TAB - previous tab
-nmap <silent> <C-S-Tab> :tabprevious<CR>
-
-" CTRL+TAB - next tab
-nmap <silent> <C-Tab> :tabnext<CR>
-
+nmap <silent> <F3> :NERDTreeTabsToggle<CR>
 nmap <silent> <S-F1> :Dox<CR>
 
-" Autoclose then NERDTree is a last tab
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nmap <silent> <leader>l :set list!<CR>
+nmap <silent> <leader>p :set paste!<CR>
+nmap <silent> <leader>h :set hlsearch!<CR>
 
-set nowrap
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-"
-" " Use the same symbols as TextMate for tabstops and EOLs
+" Use the same symbols as TextMate for tabstops and EOLs
 set listchars=trail:·,tab:▸\ ,eol:¬
 
-let g:DoxygenToolkit_compactOneLineDoc="yes"
+" Doxygen settings - no @brief, compact documentation
 let g:DoxygenToolkit_briefTag_pre=""
+let g:DoxygenToolkit_compactDoc="yes"
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -84,18 +75,35 @@ let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '\.swp']
 
-" Do not open NERDTree if filename is passed as argument to VIM
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" NERDTree autocommands
+augroup nerdtree
+   au!
+   " Do not open NERDTree if filename is passed as argument to VIM
+   au StdinReadPre * let s:std_in=1
+   au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+   " Autoclose then NERDTree is a last tab
+   au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+" C++ specific stuff
+augroup cpp_files
+   au!
+
+   " Set companion file extensions
+   au BufEnter *.h let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/'
+   au BufEnter *.hh let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/'
+
+   " Setup C++ comments
+   au FileType cpp setlocal comments=s1:/**,mb:*,ex:*/,://!,://,s1:/*,mb:*,ex:*/
+
+   " And spacing
+   au FileType cpp setlocal tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
+augroup END
 
 nnoremap <silent> <F2> :YcmCompleter GoTo<CR>
 nnoremap <silent> <C-F2> :YcmCompleter GoToDeclaration<CR>
 nnoremap <silent> <S-F2> :YcmCompleter GoToDefinition<CR>
-
-augroup mycppfiles
-   au!
-   au BufEnter *.h let b:fswitchdst  = 'cpp,cc'
- augroup END
 
 function! MySwitchBuf(filename)
    " remember current value of switchbuf
@@ -152,16 +160,10 @@ function! SwitchInBuffer(create)
    endtry
 endfunction
 
-nmap <silent> <leader>p :set paste!<CR>
-nmap <silent> <leader>h :set hlsearch!<CR>
-
 " F4 - Open companion file
 nnoremap <silent> <F4> :call SwitchInBuffer(0)<CR>
 " Ctrl+F4 - Open or create a companion file
 nnoremap <silent> <C-F4> :call SwitchInBuffer(1)<CR>
-
-" F6 - Search for a word under cursor into all files within the directory
-map <F6> :noautocmd execute "vimgrep /" . expand("<cword>") . "/j " . getcwd() . "/**" <Bar> cw<CR>
 
 function! InputGrep()
    try
@@ -189,21 +191,6 @@ noremap <Up>     <NOP>
 noremap <Down>   <NOP>
 noremap <Left>   <NOP>
 noremap <Right>  <NOP>
-
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>
-nmap <D-s> :w<CR>
-imap <D-s> <Esc>:w<CR>a
-
-"nmap <c-z> :undo<CR>
-"imap <c-z> <Esc>:undo<CR>
-"nmap <D-z> :undo<CR>
-"imap <D-z> <Esc>:undo<CR>
-
-map <silent> <Left> :wincmd h<CR>
-map <silent> <Right> :wincmd l<CR>
-map <silent> <Up> :wincmd k<CR>
-map <silent> <Down> :wincmd j<CR>
 
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
@@ -237,10 +224,6 @@ nnoremap <C-l> <C-w>l
 
 set cino=g0,N-s,l1,t0,c1,C1,(0
 
-"sO:* -,mO:*  ,exO:*/,s1:/*,mb:*,ex:*/
-autocmd FileType cpp setlocal comments=s1:/**,mb:*,ex:*/,://!,://,s1:/*,mb:*,ex:*/
-
-
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 1
 "let g:ConqueTerm_CWInsert = 1
@@ -263,7 +246,7 @@ if &term =~ "xterm\\|rxvt\\|screen-256color\\|xterm-256color"
   let &t_EI = "\<Esc>]12;lightblue\x7"
   silent !echo -ne "\033]12;lightblue\007"
   " reset cursor when vim exits
-  autocmd VimLeave * silent !echo -ne "\033]112\007"
+  au! VimLeave * silent !echo -ne "\033]112\007"
   " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
 
   " Shapes
@@ -292,4 +275,5 @@ let g:airline_powerline_fonts=1
 " Tagbar settings
 let g:tagbar_autoclose=1
 
+" Remap russian characters to english
 set langmap=ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>,ёйцукенгшщзхъфывапролджэячсмитьбю;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.

@@ -49,7 +49,7 @@ function zle-line-finish () {
     echoti rmkx
 }
 zle -N zle-line-init
-zle -N zle-line-finish  
+zle -N zle-line-finish
 
 # History
 setopt inc_append_history
@@ -65,7 +65,7 @@ autoload -Uz promptinit
 promptinit
 prompt bart
 
-if [[ `uname` != 'Darwin' ]] ; then   
+if [[ `uname` != 'Darwin' ]] ; then
    eval `dircolors $HOME/vim.config/dircolors.256dark`
    alias ls='ls --color=auto'
    alias ll='ls -lah --color=auto'
