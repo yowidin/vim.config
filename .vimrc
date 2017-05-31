@@ -90,9 +90,12 @@ augroup END
 augroup cpp_files
    au!
 
-   " Set companion file extensions
-   au BufEnter *.h let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/'
-   au BufEnter *.hh let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/'
+   " Set companion file extensions and search path
+   " Try to search in the directory with `inlide` replaced by `src` frist
+   " and then with `include/???/` replaced by `src/`, ommiting first
+   " subdirectory
+   au BufEnter *.h let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/,reg:|include/.\{-}/|src/|'
+   au BufEnter *.hh let b:fswitchdst  = 'cpp,cc' | let b:fswitchlocs = 'reg:/include/src/,reg:|include/.\{-}/|src/|'
 
    " Setup C++ comments
    au FileType cpp setlocal comments=s1:/**,mb:*,ex:*/,://!,://,s1:/*,mb:*,ex:*/
