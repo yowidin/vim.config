@@ -3,8 +3,9 @@ syntax enable
 " Vundle settings
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" 256 Collors support
 set t_Co=256
-set mouse+=a
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -35,6 +36,9 @@ Plugin 'godlygeek/tabular'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+set modeline
+set modelines=10
 
 set background=dark
 :silent! colorscheme solarized
@@ -264,9 +268,9 @@ if &term =~ "xterm\\|rxvt\\|screen-256color\\|xterm-256color"
   " 6 -> solid vertical bar
 endif
 
-" Splits resize
-if &term =~ '^screen'
-   " Tmux knows the extended mouse mode
+" Mouse support tmux knows the extended mouse mode
+set mouse+=a
+if &term =~ '^xterm-256color\|^screen'
    set ttymouse=xterm2
 endif
 
