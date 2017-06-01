@@ -209,10 +209,13 @@ set relativenumber
 
 nmap <F8> :TagbarToggle<CR>
 
-" map <F12> :pyf ~/.vim/clang-format.py<cr>
-" imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
-map <F12> :py3f ~/.vim/clang-format3.py<cr>
-imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<cr>
+if has('py3')
+    map <F12> :py3f ~/.vim/clang-format3.py<cr>
+    imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<cr>
+else
+    map <F12> :pyf ~/.vim/clang-format.py<cr>
+    imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
+endif
 
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
