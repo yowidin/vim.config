@@ -71,4 +71,6 @@ if [[ `uname` != 'Darwin' ]] ; then
    alias ll='ls -lah --color=auto'
 fi
 
+alias gpush='git push origin HEAD'
+
 export TERM=xterm-256color
