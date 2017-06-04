@@ -22,6 +22,12 @@ for part in parts:
 if len(result) != 0:
    result += '\n'
 
+class_name = path.split(os.path.sep)[-1]
+class_name = class_name.split('.')[0]
+
+result += 'class ' + str(class_name) + ' \x7B\n'
+result += 'public:\n\x7D;\n\n'
+
 for part in reversed(parts):
    result += '\x7D // namespace ' + part + '\n'
 
