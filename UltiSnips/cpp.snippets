@@ -11,6 +11,22 @@ snippet header "Standard file header" b
 #ifndef ${1:`!v substitute(toupper(expand("%")), "[\\,/,\\-,.]", "_", "g")`}
 #define $1
 
+${2:`!p
+import os
+parts = path.split(os.path.sep)[1:-1]
+
+result = ''
+for part in parts:
+   result += 'namespace ' + part + ' \x7B\n'
+
+if len(result) != 0:
+   result += '\n'
+
+for part in reversed(parts):
+   result += '\x7D // namespace ' + part + '\n'
+
+snip.rv = result
+`}
 #endif // $1
 endsnippet
 
