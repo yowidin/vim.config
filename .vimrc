@@ -209,7 +209,7 @@ set relativenumber
 
 nmap <F8> :TagbarToggle<CR>
 
-if has('py3')
+if has('python3')
     map <F12> :py3f ~/.vim/clang-format3.py<cr>
     imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<cr>
 else
