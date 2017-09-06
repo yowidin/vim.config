@@ -23,9 +23,9 @@ def mkdir(path):
         print("--- Created a direcory: '{0}'".format(path))
     except OSError as error:
         import errno
-        if error.errno == errno.EEXIST: 
+        if error.errno == errno.EEXIST:
             print("--- Skipped directory creation: '{0}'".format(path))
-        else: 
+        else:
             raise
 
 # Create a symbolik link from this script directory into HOME folder
@@ -38,9 +38,9 @@ def symlink(name, directory=''):
         print("--- Created a symlink: '{0}' -> '{1}".format(source, target))
     except OSError as error:
         import errno
-        if error.errno == errno.EEXIST: 
+        if error.errno == errno.EEXIST:
             print("--- Skipped symlink creation: '{0}' -> '{1}".format(source, target))
-        else: 
+        else:
             raise
     # run_checked(['ln', '-s', os.path.join(SCRIPT_PATH, path), os.path.join(HOME_PATH, path)])
     pass
@@ -71,6 +71,13 @@ def main():
         print('--- Vundle is already checked out')
     run_checked(['vim', '+PluginInstall', '+qall'])
     run_checked(['python', 'install.py', '--clang-completer'], cwd=os.path.join(HOME_PATH, '.vim', 'bundle', 'YouCompleteMe'))
+
+    tpm_path = os.path.join(HOME_PATH, '.tmux', 'plugins', 'tpm')
+    if not os.path.isdir(tpm_path):
+        print('--- Checking out the tmux plugins')
+        run_checked(['git', 'clone', 'https://github.com/tmux-plugins/tpm', tpm_path])
+    else:
+        print('--- TPM is already checked out')
 
 # Main function wrapper - handles all exceptions
 # and prints them into standard error output
