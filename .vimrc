@@ -31,6 +31,8 @@ Plugin 'yowidin/vim-german-spell'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
@@ -83,8 +85,8 @@ let NERDTreeIgnore = ['\.pyc$', '\.swp']
 augroup nerdtree
    au!
    " Do not open NERDTree if filename is passed as argument to VIM
-   au StdinReadPre * let s:std_in=1
-   au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+   "au StdinReadPre * let s:std_in=1
+   "au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
    " Autoclose then NERDTree is a last tab
    au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
