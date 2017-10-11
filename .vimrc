@@ -299,3 +299,7 @@ set dir=$HOME/tmp/vimswap//,.
 " Highlight extra white spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+" Don't save sessions automatically
+:let g:session_autosave="no"
+:let g:session_autoload="no"
