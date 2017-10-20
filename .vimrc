@@ -302,7 +302,7 @@ match ExtraWhitespace /\s\+$/
 
 " Silent make - cd into a directory, execute the make command and open the
 " quickfix window in case of build errors
-command -nargs=1 Smake cd <args> | silent make | cd - | cwindow | redraw!
+command -complete=dir -nargs=1 Smake cd <args> | silent make | cd - | cwindow | redraw!
 
 " Don't save sessions automatically
 :let g:session_autosave="no"
