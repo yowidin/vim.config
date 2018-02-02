@@ -33,6 +33,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'Chiel92/vim-autoformat'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
@@ -211,13 +212,17 @@ set relativenumber
 
 nmap <F8> :TagbarToggle<CR>
 
-if has('python3')
-    map <F12> :py3f ~/.vim/clang-format3.py<cr>
-    imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<cr>
-else
-    map <F12> :pyf ~/.vim/clang-format.py<cr>
-    imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
-endif
+"if has('python3')
+"    map <F12> :py3f ~/.vim/clang-format3.py<cr>
+"    imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<cr>
+"else
+"    map <F12> :pyf ~/.vim/clang-format.py<cr>
+"    imap <F12> <c-o>:pyf ~/.vim/clang-format.py<cr>
+"endif
+noremap <F12> :Autoformat<CR>
+let g:autoformat_autoindent=0
+let g:autoformat_retab=0
+let g:autoformat_remove_trailing_spaces=0
 
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
