@@ -34,6 +34,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'w0rp/ale.git'
 "Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
