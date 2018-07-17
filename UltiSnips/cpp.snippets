@@ -13,7 +13,7 @@ snippet header "Standard file header" b
 
 ${2:`!p
 import os
-parts = path.split(os.path.sep)[1:-1]
+parts = [x.replace('-', '_').replace('.', '_') for x in  path.split(os.path.sep)[1:-1]]
 
 result = ''
 for part in parts:
@@ -66,4 +66,19 @@ endsnippet
 ################################################################################
 snippet ntd "Nothing to do here"
 // Nothing to do here
+endsnippet
+
+################################################################################
+# Test source file
+################################################################################
+snippet test "Standard file header" b
+/**
+ * @file   `!p snip.rv = fn`
+ * @author Dennis Sitelew
+ * @date   `!v strftime("%b %d, %Y")`
+ */
+
+#include <gtest/gtest.h>
+
+
 endsnippet

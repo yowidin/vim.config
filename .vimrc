@@ -213,8 +213,16 @@ set relativenumber
 
 nmap <F8> :TagbarToggle<CR>
 
-vmap <F12> :Autoformat<CR>
-nmap <F12>  V :Autoformat<CR>
+if has('python3')
+   map <F12> :py3f ~/.vim/clang-format3.py<CR>
+   imap <F12> <c-o>:py3f ~/.vim/clang-format3.py<CR>
+else
+   map <F12> :pyf ~/.vim/clang-format.py<CR>
+   imap <F12> <c-o>:pyf ~/.vim/clang-format.py<CR>
+endif
+
+vmap <F9> :Autoformat<CR>
+nmap <F9>  V :Autoformat<CR>
 let g:autoformat_autoindent=0
 let g:autoformat_retab=0
 let g:autoformat_remove_trailing_spaces=0
