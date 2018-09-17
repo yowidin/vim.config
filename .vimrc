@@ -81,7 +81,7 @@ let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeHighlightCursorline=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
-let NERDTreeIgnore = ['\.pyc$', '\.swp']
+let NERDTreeIgnore = ['\.pyc$', '\.swp', '__pycache__']
 
 " NERDTree autocommands
 augroup nerdtree
