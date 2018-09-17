@@ -58,6 +58,7 @@ nmap <silent> <S-F1> :Dox<CR>
 nmap <silent> <leader>l :set list!<CR>
 nmap <silent> <leader>p :set paste!<CR>
 nmap <silent> <leader>h :set hlsearch!<CR>
+nmap <silent> <leader>s :highlight OverLength ctermbg=red ctermfg=white guibg=#592929<CR>:match OverLength /\%81v.\+/<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=trail:·,tab:▸\ ,eol:¬
@@ -110,6 +111,9 @@ augroup cpp_files
 
    " And spacing
    au FileType cpp setlocal tabstop=3 softtabstop=0 expandtab shiftwidth=3 smarttab
+
+   " Disable ALE linter
+   au FileType cpp :ALEDisable
 augroup END
 
 nnoremap <silent> <F2> :YcmCompleter GoTo<CR>
